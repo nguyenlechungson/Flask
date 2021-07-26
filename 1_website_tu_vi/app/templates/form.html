@@ -1,0 +1,75 @@
+<form action='' method='POST' novalidate autocomplete="off">
+  <div class="card h-auto shadow p-3 mb-5 bg-lite rounded" style="box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px;">
+    <h4 class="card-header">Thông tin Gia chủ</h4>
+    <div class="card-body">
+
+      {{Form.csrf_token}}
+      <div class='form-row'>
+        <div class='form-group col-md-6' style="padding-bottom: 10px;">
+          {{Form.username.label}}(*)
+          {{Form.username(class="form-control",type="text",value="")}}
+          {% for error in Form.username.errors %}
+          <span style="color:red;"><i><small>{{ error }}</small></i></span>
+          {% endfor %}
+        </div>
+        <div class='form-group col-md-4' style="padding-bottom: 10px;">
+          {{ Form.birthday.label }}(*)
+          {{ Form.birthday(type="date",class="form-control",value="" )}}
+          {% for error in Form.birthday.errors %}
+          <span style="color:red;"><i><small>{{ error }}</small></i></span>
+          {% endfor %}
+        </div>
+        <div class='form-group col-md-2' style="padding-bottom: 10px;">
+          {{Form.gender.label}}(*)
+          {{Form.gender(type="radio",class="form-control")}}
+          {% for error in Form.gender.errors %}
+          <span style="color:red;"><i><small>{{ error }}</small></i></span>
+          {% endfor %}
+        </div>
+      </div>
+      <div class='form-row'>
+        <div class="form-group col-md-6" style="padding-bottom: 10px;">
+          {{Form.email.label}}(*)
+          {{Form.email(type="email",class="form-control",value="")}}
+
+          {% for error in Form.email.errors %}
+          <span style="color:red;"><i><small>{{ error }}</small></i></span>
+          {% endfor %}
+        </div>
+        <div class="form-group col-md-3" style="padding-bottom: 10px;">
+          {{Form.phone.label}}
+          {{Form.phone(type="tel",class="form-control",value="")}}
+          {% for error in Form.phone.errors %}
+          <span style="color:red;"><i><small>{{ error }}</small></i></span>
+          {% endfor %}
+        </div>
+        <div class="form-group col-md-3" style="padding-bottom: 10px;">
+          {{Form.address.label}}
+          {{Form.address(type="text",class="form-control",value="HCM")}}
+          {% for error in Form.address.errors %}
+          <span style="color:red;"><i><small>{{ error }}</small></i></span>
+          {% endfor %}
+        </div>
+
+      </div>
+
+    </div>
+    <div class="card-footer">
+      <span class="card-title float-left">{{Form.submit(type="submit", class="btn btn-outline-primary")}}</span>
+      <span class="dropdown disable" >
+        <button class="btn btn-outline-secondary dropdown-toggle float-right" type="button" id="dropdownMenuButton"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" disabled>
+          Danh mục gia chủ
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <div style="height:300px;overflow-y: scroll;padding:5px; border: 1px solid rgb(12, 0, 0);">
+            {% for thongtin in thong_tin %}
+            <a class="dropdown-item" href="{{thongtin}}">{{thongtin}}</a>
+            {% endfor %}
+          </div>
+        </div>
+      </span>
+
+    </div>
+  </div>
+</form>

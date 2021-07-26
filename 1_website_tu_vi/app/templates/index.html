@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block app_content %}
+
+<!-- Page Content -->
+<div class="container">
+  <!-- Time, weather, Gold price (API) Icons Section -->
+  <div class="row">
+    <div id="dong_ho" class="col col-md-4 col-lg-4 float-left">
+
+      <div id="thoi_gian">
+        <div>
+          <span id="gio">00</span><span>Giờ</span>
+        </div>
+        <div>
+          <span id="phut">00</span><span>Phút</span>
+        </div>
+        <div>
+          <span id="giay">00</span><span>Giây</span>
+        </div>
+      </div>
+    </div>
+    <div class="col col-md-8 col-lg-8 float-right">
+      <div class='widget-content'>
+        <!-- Dự báo thời tiết, giá vàng -->
+        <iframe frameborder="0" marginwidth="10px" marginheight="10px" style="width:47vw;max-height:160px;"
+          src="http://www.thienduongweb.com/tool/weather/?size=180&fsize=10&bg=images/bg.png&repeat=repeat-x&r=1&w=1&g=1&d=0"
+          scrolling="yes"></iframe>
+        <!--/Dự báo thời tiết, giá vàng -->
+      </div>
+    </div>
+  </div>
+  <!-- Intro Content -->
+  <div class="row">
+    <div class="col col-md-8 col-lg-8">
+      <p>
+        {% block FORM %}
+        {% include "form.html "%}
+        {% endblock %}
+      </p>
+      <p>
+        {% block POST %}
+        {% include "post.html"%}
+        {% endblock %}
+      </p>
+
+
+    </div>
+    <div class="col col-md-4 col-lg-4">
+      {% block AUTHOR %}
+      {% include "author.html "%}
+      {% endblock %}
+    </div>
+  </div>
+  <div class="row">
+
+  </div>
+  <!-- /.row -->
+  <!-- Marketing Icons Section -->
+
+  <!-- /.Marketing Icons Section -->
+
+
+  <!-- /.Call to Action Section -->
+</div>
+{% endblock %}

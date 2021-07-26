@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block app_content %}
+
+<div class="container">
+    <!-- Marketing Icons Section -->
+    <div class="row">
+        <!-- Form infor-->
+        <div class="col-lg-8 mb-8">
+            <div>
+                {{Thong_Tin_Gia_Chu}}
+            </div>
+        </div>
+        <!-- /.Form infor-->
+
+        <!--Author Infor-->
+        <div class="col-lg-4 mb-4">
+            <div>
+                {% block AUTHOR %}
+                {% include "author.html "%}
+                {% endblock %}
+            </div>
+            <div>
+                {% block POST %}
+                {% include "post.html "%}
+                {% endblock %}
+            </div>
+        </div>
+        <!--/.Author Infor-->
+    </div>
+</div>
+{% endblock %}

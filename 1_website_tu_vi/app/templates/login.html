@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block app_content %}
+
+<!-- Outer Row -->
+<div class="row justify-content-left p-4" style="background-image: url('../static/image/cung_hoang_dao.jpg');">
+
+    <div class="card h-auto shadow p-2 mb-5 bg-lite rounded" style="box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px;">
+
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+            <div class="card-body">
+                <form method='post' enctype="multipart/form-data" action="#" novalidate autocomplete="off">
+                    {{ form.hidden_tag() }}
+                    <div class="text-center form-group col-md-12" style="padding-bottom: 10px;">
+                        <h1 class="h4 card-tittle">Chào mừng đăng nhập hệ thống</h1>
+                    </div>
+                    <div class="form-group col-md-12" style="padding-bottom: 10px;">
+                        {{form.username.label}}
+                        {{form.username(class="form-control")}}
+                        {% for error in form.username.errors %}
+                        <span style="color:red;"><i><small>{{ error }}</small></i></span>
+                        {% endfor %}
+                    </div>
+                    <div class="form-group col-md-12" style="padding-bottom: 10px;">
+                        {{form.birthday.label}}
+                        {{form.birthday(class="form-control",type="date")}}
+                        {% for error in form.birthday.errors %}
+                        <span style="color:red;"><i><small>{{ error }}</small></i></span>
+                        {% endfor %}
+                    </div>
+                    <div>
+                        <span class="form-group col-md-12" style="padding-bottom: 10px;">{{form.submit(type="submit",
+                            class="btn
+                            btn-outline-primary btn-sm")}}
+                        </span>
+                        <!-- Split dropright button -->
+                        <span class="btn-group dropright">
+                            <button type="button" class="btn btn-outline-secondary btn-sm" onclick=" huong_dan()">
+                                Chưa có tài khoản ?
+                            </button>
+
+                        </span>
+                    </div>
+                    <hr>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function huong_dan() {
+        alert(
+            "Để tạo tài khoản đăng nhập. Bạn cần click trở về Trang Chủ. Sau đó, nhập đầy đủ Form Thông tin Gia chủ."
+        )
+    }
+</script>
+{% endblock %}
