@@ -1,61 +1,4 @@
-2021-07-01 17:20:51,190 ERROR: Exception on /amlich-hnd.js [GET] [in C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py: 1891]
-Traceback (most recent call last):
-  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py", line 2447, in wsgi_app
-    response = self.full_dispatch_request()
-  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\_compat.py", line 39, in reraise
-    raise value
-  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py", line 1936, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "d:\software_laptrinh\Python Learning\10. Tu_vi\app\routes.py", line 92, in truy_xuat_gia_chu
-    thong_tin_gia_chu = chuoi_HTML_gia_chu(username)
-  File "d:\software_laptrinh\Python Learning\10. Tu_vi\app\routes.py", line 191, in chuoi_HTML_gia_chu
-    destination = UserDestination.query.fillter_by(user_id=user.id).first()
-AttributeError: 'BaseQuery' object has no attribute 'fillter_by'
-2021-07-01 17:20:52,701 ERROR: Exception on /favicon.ico [GET] [in C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py: 1891]
-Traceback (most recent call last):
-  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py", line 2447, in wsgi_app
-    response = self.full_dispatch_request()
-  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\_compat.py", line 39, in reraise
-    raise value
-  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py", line 1936, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "d:\software_laptrinh\Python Learning\10. Tu_vi\app\routes.py", line 92, in truy_xuat_gia_chu
-    thong_tin_gia_chu = chuoi_HTML_gia_chu(username)
-  File "d:\software_laptrinh\Python Learning\10. Tu_vi\app\routes.py", line 191, in chuoi_HTML_gia_chu
-    destination = UserDestination.query.fillter_by(user_id=user.id).first()
-AttributeError: 'BaseQuery' object has no attribute 'fillter_by'
-2021-07-01 17:20:59,349 ERROR: Exception on /favicon.ico [GET] [in C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py: 1891]
-Traceback (most recent call last):
-  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py", line 2447, in wsgi_app
-    response = self.full_dispatch_request()
-  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\_compat.py", line 39, in reraise
-    raise value
-  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py", line 1936, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "d:\software_laptrinh\Python Learning\10. Tu_vi\app\routes.py", line 92, in truy_xuat_gia_chu
-    thong_tin_gia_chu = chuoi_HTML_gia_chu(username)
-  File "d:\software_laptrinh\Python Learning\10. Tu_vi\app\routes.py", line 191, in chuoi_HTML_gia_chu
-    destination = UserDestination.query.fillter_by(user_id=user.id).first()
-AttributeError: 'BaseQuery' object has no attribute 'fillter_by'
-2021-07-01 17:23:16,547 ERROR: Exception on /amlich-hnd.js [GET] [in C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py: 1891]
+2021-07-01 17:59:10,688 ERROR: Exception on /favicon.ico [GET] [in C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py: 1891]
 Traceback (most recent call last):
   File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -74,7 +17,51 @@ Traceback (most recent call last):
   File "d:\software_laptrinh\Python Learning\10. Tu_vi\app\routes.py", line 191, in chuoi_HTML_gia_chu
     destination = UserDestination.query.filter_by(user_id=user.id).first()
 AttributeError: 'NoneType' object has no attribute 'id'
-2021-07-01 17:23:16,987 ERROR: Exception on /favicon.ico [GET] [in C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py: 1891]
+2021-07-01 17:59:44,608 ERROR: Exception on /index [POST] [in C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py: 1891]
+Traceback (most recent call last):
+  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\sqlalchemy\orm\base.py", line 406, in _entity_descriptor
+    return getattr(entity, key)
+AttributeError: type object 'UserDb' has no attribute 'email'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "d:\software_laptrinh\Python Learning\10. Tu_vi\app\routes.py", line 32, in index
+    if form.validate_on_submit():
+  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask_wtf\form.py", line 100, in validate_on_submit
+    return self.is_submitted() and self.validate()
+  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\wtforms\form.py", line 318, in validate
+    return super(Form, self).validate(extra)
+  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\wtforms\form.py", line 150, in validate
+    if not field.validate(self, extra):
+  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\wtforms\fields\core.py", line 226, in validate
+    stop_validation = self._run_validation_chain(form, chain)
+  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\wtforms\fields\core.py", line 246, in _run_validation_chain
+    validator(form, self)
+  File "d:\software_laptrinh\Python Learning\10. Tu_vi\app\form.py", line 17, in validate_email
+    user = UserDb.query.filter_by(email=email.data).first()
+  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\sqlalchemy\orm\query.py", line 1921, in filter_by
+    clauses = [
+  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\sqlalchemy\orm\query.py", line 1922, in <listcomp>
+    _entity_descriptor(zero, key) == value
+  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\sqlalchemy\orm\base.py", line 408, in _entity_descriptor
+    util.raise_(
+  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\sqlalchemy\util\compat.py", line 182, in raise_
+    raise exception
+sqlalchemy.exc.InvalidRequestError: Entity '<class 'app.models.UserDb'>' has no property 'email'
+2021-07-01 17:59:44,756 ERROR: Exception on /favicon.ico [GET] [in C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py: 1891]
 Traceback (most recent call last):
   File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -93,7 +80,7 @@ Traceback (most recent call last):
   File "d:\software_laptrinh\Python Learning\10. Tu_vi\app\routes.py", line 191, in chuoi_HTML_gia_chu
     destination = UserDestination.query.filter_by(user_id=user.id).first()
 AttributeError: 'NoneType' object has no attribute 'id'
-2021-07-01 17:23:35,239 ERROR: Exception on /favicon.ico [GET] [in C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py: 1891]
+2021-07-01 18:00:47,103 ERROR: Exception on /amlich-hnd.js [GET] [in C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py: 1891]
 Traceback (most recent call last):
   File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -112,7 +99,7 @@ Traceback (most recent call last):
   File "d:\software_laptrinh\Python Learning\10. Tu_vi\app\routes.py", line 191, in chuoi_HTML_gia_chu
     destination = UserDestination.query.filter_by(user_id=user.id).first()
 AttributeError: 'NoneType' object has no attribute 'id'
-2021-07-01 17:59:10,046 ERROR: Exception on /amlich-hnd.js [GET] [in C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py: 1891]
+2021-07-01 18:00:47,601 ERROR: Exception on /favicon.ico [GET] [in C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py: 1891]
 Traceback (most recent call last):
   File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()

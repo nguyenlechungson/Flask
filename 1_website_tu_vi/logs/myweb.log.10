@@ -1,58 +1,4 @@
-2021-06-17 16:02:56,932 ERROR: Exception on / [GET] [in C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py: 1891]
-Traceback (most recent call last):
-  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\sqlalchemy\util\_collections.py", line 1020, in __call__
-    return self.registry[key]
-KeyError: 4412
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py", line 2447, in wsgi_app
-    response = self.full_dispatch_request()
-  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\_compat.py", line 39, in reraise
-    raise value
-  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py", line 1936, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "d:\software_laptrinh\Python Learning\10. Tu_vi\app\routes.py", line 22, in index
-    thongtin = xem_tuoi_all()
-  File "d:\software_laptrinh\Python Learning\10. Tu_vi\app\routes.py", line 73, in xem_tuoi_all
-    thong_tin = UserDb.query.all()
-  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask_sqlalchemy\__init__.py", line 514, in __get__
-    return type.query_class(mapper, session=self.sa.session())
-  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\sqlalchemy\orm\scoping.py", line 78, in __call__
-    return self.registry()
-  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\sqlalchemy\util\_collections.py", line 1022, in __call__
-    return self.registry.setdefault(key, self.createfunc())
-  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\sqlalchemy\orm\session.py", line 3300, in __call__
-    return self.class_(**local_kw)
-  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask_sqlalchemy\__init__.py", line 138, in __init__
-    bind = options.pop('bind', None) or db.engine
-  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask_sqlalchemy\__init__.py", line 943, in engine
-    return self.get_engine()
-  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask_sqlalchemy\__init__.py", line 962, in get_engine
-    return connector.get_engine()
-  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask_sqlalchemy\__init__.py", line 556, in get_engine
-    self._engine = rv = self._sa.create_engine(sa_url, options)
-  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask_sqlalchemy\__init__.py", line 972, in create_engine
-    return sqlalchemy.create_engine(sa_url, **engine_opts)
-  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\sqlalchemy\engine\__init__.py", line 500, in create_engine
-    return strategy.create(*args, **kwargs)
-  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\sqlalchemy\engine\strategies.py", line 87, in create
-    dbapi = dialect_cls.dbapi(**dbapi_args)
-  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\sqlalchemy\dialects\sqlite\pysqlite.py", line 430, in dbapi
-    from sqlite3 import dbapi2 as sqlite
-  File "C:\Users\son_n\.conda\envs\flask\lib\sqlite3\__init__.py", line 23, in <module>
-    from sqlite3.dbapi2 import *
-  File "C:\Users\son_n\.conda\envs\flask\lib\sqlite3\dbapi2.py", line 27, in <module>
-    from _sqlite3 import *
-ImportError: DLL load failed while importing _sqlite3: The specified module could not be found.
-2021-06-19 12:13:24,240 ERROR: Exception on /favicon.ico [GET] [in C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py: 1891]
+2021-06-19 12:13:53,078 ERROR: Exception on /favicon.ico [GET] [in C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py: 1891]
 Traceback (most recent call last):
   File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -71,7 +17,7 @@ Traceback (most recent call last):
   File "d:\software_laptrinh\Python Learning\10. Tu_vi\app\routes.py", line 156, in chuoi_HTML_gia_chu
     can, chi = thong_tin.can_chi.split(' ')
 AttributeError: 'NoneType' object has no attribute 'can_chi'
-2021-06-19 12:13:32,674 ERROR: Exception on /favicon.ico [GET] [in C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py: 1891]
+2021-06-19 12:14:01,737 ERROR: Exception on /indexk [GET] [in C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py: 1891]
 Traceback (most recent call last):
   File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -90,7 +36,7 @@ Traceback (most recent call last):
   File "d:\software_laptrinh\Python Learning\10. Tu_vi\app\routes.py", line 156, in chuoi_HTML_gia_chu
     can, chi = thong_tin.can_chi.split(' ')
 AttributeError: 'NoneType' object has no attribute 'can_chi'
-2021-06-19 12:13:39,563 ERROR: Exception on /favicon.ico [GET] [in C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py: 1891]
+2021-06-19 12:14:01,831 ERROR: Exception on /favicon.ico [GET] [in C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py: 1891]
 Traceback (most recent call last):
   File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
@@ -109,7 +55,64 @@ Traceback (most recent call last):
   File "d:\software_laptrinh\Python Learning\10. Tu_vi\app\routes.py", line 156, in chuoi_HTML_gia_chu
     can, chi = thong_tin.can_chi.split(' ')
 AttributeError: 'NoneType' object has no attribute 'can_chi'
-2021-06-19 12:13:50,748 ERROR: Exception on /favicon.ico [GET] [in C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py: 1891]
+2021-06-19 12:14:07,778 ERROR: Exception on /favicon.ico [GET] [in C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py: 1891]
+Traceback (most recent call last):
+  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "d:\software_laptrinh\Python Learning\10. Tu_vi\app\routes.py", line 79, in truy_xuat_gia_chu
+    thong_tin_gia_chu = chuoi_HTML_gia_chu(gia_chu_username)
+  File "d:\software_laptrinh\Python Learning\10. Tu_vi\app\routes.py", line 156, in chuoi_HTML_gia_chu
+    can, chi = thong_tin.can_chi.split(' ')
+AttributeError: 'NoneType' object has no attribute 'can_chi'
+2021-06-19 12:14:45,716 ERROR: Exception on /favicon.ico [GET] [in C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py: 1891]
+Traceback (most recent call last):
+  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "d:\software_laptrinh\Python Learning\10. Tu_vi\app\routes.py", line 79, in truy_xuat_gia_chu
+    thong_tin_gia_chu = chuoi_HTML_gia_chu(gia_chu_username)
+  File "d:\software_laptrinh\Python Learning\10. Tu_vi\app\routes.py", line 156, in chuoi_HTML_gia_chu
+    can, chi = thong_tin.can_chi.split(' ')
+AttributeError: 'NoneType' object has no attribute 'can_chi'
+2021-06-19 12:15:21,112 ERROR: Exception on /favicon.ico [GET] [in C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py: 1891]
+Traceback (most recent call last):
+  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "d:\software_laptrinh\Python Learning\10. Tu_vi\app\routes.py", line 79, in truy_xuat_gia_chu
+    thong_tin_gia_chu = chuoi_HTML_gia_chu(gia_chu_username)
+  File "d:\software_laptrinh\Python Learning\10. Tu_vi\app\routes.py", line 156, in chuoi_HTML_gia_chu
+    can, chi = thong_tin.can_chi.split(' ')
+AttributeError: 'NoneType' object has no attribute 'can_chi'
+2021-06-21 16:16:56,555 ERROR: Exception on /favicon.ico [GET] [in C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py: 1891]
 Traceback (most recent call last):
   File "C:\Users\son_n\.conda\envs\flask\lib\site-packages\flask\app.py", line 2447, in wsgi_app
     response = self.full_dispatch_request()
