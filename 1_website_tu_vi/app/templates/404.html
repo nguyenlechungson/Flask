@@ -2,8 +2,9 @@
 
 {% block app_content %}
 <div class="container">
-    <h1>Xin lỗi bạn. Server không tìm thấy file bạn yêu cầu</h1>
+    <h1 class="text-center">Xin lỗi bạn. Server không tìm thấy file bạn yêu cầu</h1>
     <p style="color: rgb(31, 9, 224);">{{ error }}</p>
+    <img src="../static/image/404.jpg" alt="404.jpg" class="img-fluid">
     <p><a href="{{ url_for('index')}}">Back</a></p>
 </div>
 {% endblock %}
