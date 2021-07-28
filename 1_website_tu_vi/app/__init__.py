@@ -21,15 +21,34 @@ login.login_message = 'Vui lòng nhập thông tin vào form này.'
 # Tạo file log ghi nhận sự kiện trong webapp
 from logging.handlers import RotatingFileHandler
 import os
+# Tạo hàm tạo ứng dụng, chúng ta có thể kiểm tra biến này để thiết lập cấu hình phù hợp cho nhật ký ứng dụng, Ghi nhật ký vào stdout hoặc file.
 
-if not app.debug:
-    if not os.path.exists('logs'):
-        os.mkdir('logs')
+def create_app(config_class=Config):
+    if not app.debug and not app.testing:
+        if not os.path.exists('logs'):
+            os.mkdir('logs')
+        
+        file_handler = RotatingFileHandler('logs/myweb.log',maxBytes=10240,backupCount=10)
+        file_handler.setFormatter(logging.Formatter('%(asctime)s %(levelname)s: %(message)s [in %(pathname)s: %(lineno)d]'))
+        file_handler.setLevel(logging.INFO)
+        app.logger.addHandler(file_handler)
+        app.logger.info('MyWeb startup')
+
+        if app.config['LOG_TO_STDOUT']:
+            stream_handler = logging.StreamHandler()
+            stream_handler.setLevel(logging.INFO)
+            app.logger.addHandler(stream_handler)
+        else:
+            if not os.path.exists('log'):
+                os.mkdir('log')
+            file_handler= RotatingFileHandler('log/mylog.log',maxBytes=10240,backupCount=10)
+            file_handler.setFormatter(logging.Formatter('%(asctime)s %(levelname)s: %(message)s [in %(pathname)s: %(lineno)d]'))
+            file_handler.setLevel(logging.INFO)
+            app.logger.addHandler(file_handler)
+        app.logger.setLevel(logging.INFO)
+        app.logger.info('Myblog startup')
     
-    file_handler = RotatingFileHandler('logs/myweb.log',maxBytes=10240,backupCount=10)
-    file_handler.setFormatter(logging.Formatter('%(asctime)s %(levelname)s: %(message)s [in %(pathname)s: %(lineno)d]'))
-    file_handler.setLevel(logging.INFO)
-    app.logger.addHandler(file_handler)
-    app.logger.info('MyWeb startup')
+
+    return app
 
 from app import routes, models, errors
