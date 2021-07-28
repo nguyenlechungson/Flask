@@ -58,3 +58,5 @@ wincertstore==0.2
 wrapt==1.12.1
 WTForms @ file:///tmp/build/80754af9/wtforms_1597707484216/work
 xlrd==2.0.1
+gunicorn
+psycopg2s
