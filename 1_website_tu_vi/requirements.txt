@@ -58,3 +58,5 @@ wincertstore==0.2
 wrapt==1.12.1
 WTForms 
 xlrd==2.0.1
+gunicorn
+flask
