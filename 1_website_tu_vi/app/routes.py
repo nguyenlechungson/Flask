@@ -37,7 +37,7 @@ def index():
         # ghi nhận thông tin cơ bản
         nam, thang, ngay = form.birthday.data.split('-')
         birthday = ngay+'/'+thang+'/'+nam
-        user_db = UserDb(username=form.username.data.title(),birthday=birthday,gender=form.gender.data,email=form.email.data,phone=form.phone.data,address=form.address.data)
+        user_db = UserDb(username=form.username.data.title(),birthday=birthday,gender=form.gender.data,email=form.email.data,address=form.address.data)
         user_db.set_password(form.birthday.data)
         db.session.add(user_db)
         db.session.commit()
@@ -292,27 +292,24 @@ def chuoi_HTML_gia_chu(username):
 
         thong_tin_xem_tuoi = \
             '''
-          <div class="card h-auto shadow p-3 mb-5 bg-white rounded"style="box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px;">
+          <div class="card h-auto shadow p-0 md-5 bg-white rounded"style="box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px;">
             <h4 class="card-header">
               <a class="list-group-item list-group-item-action text-capitalize" href="#'''+str(destination.id) + '''">'''+str(user.username)+'''</a>
             </h4>
             <div class="card-body">
-              <div class="row" style="background-image: url(../static/image/12_con_giap/'''+chi+'''.png);background-size: 370px 200px;"alt="Hinh_'''+chi+'''">
-                <div class="col-lg-3 mb-3">
-                  <span><h4 class="card-title text-center text-capitalize">'''+str(destination.can_chi) + '''</h4></span>
-                  
+              <div class="row" style="background-image: url(../static/image/12_con_giap/'''+str(chi)+'''.png);background-size: 440px 242px;"alt="Hinh_'''+chi+'''">
+                <div class="col-lg-12 md-12 text-center"">
+                  <p><h5 class="card-title text-capitalize" style="font-family:Style Script;font-size:40px">Tử vi tuổi '''+str(can_chi[1]) + '''</h5></p><hr>
+                  <p style="margin-bottom:0;"><b>Ngày sinh: </b>''' + str(user.birthday) + '''</p><hr>
+                  <p style="margin-bottom:0;"><b>Giới tính: </b>''' + str(user.gender) + '''</p><hr>
+                  <p style="margin-bottom:0;"><b>Năm sinh âm lịch: </b>''' + str(destination.nam_sinh_am_lich) + '''</p><hr>
                 </div>
-                <div class="col-lg-7 mb-7">
-                  <p><b>Ngày sinh: </b>''' + str(user.birthday) + '''</p><hr>
-                  <p><b>Giới tính: </b>''' + str(user.gender) + '''</p><hr>
-                  <p><b>Năm sinh âm lịch: </b>''' + str(destination.nam_sinh_am_lich) + '''</p><hr>
-                  </div>
               </div>
-              <div class="row card">
+              <div class="row card" style="font-family: 'Andada Pro', serif;font-size:20px">
                 <p class="text-capitalize"><b>Mệnh: </b>''' + str(menh) + '''</p><hr>
                 <p>''' + str(destination.tam_tai) + '''</p><hr>
                 <p>''' + str(destination.kim_lau) + '''</p><hr>
-                <p>''' + str(destination.hoang_oc) + '''</p>
+                <p>''' + str(destination.hoang_oc) + '''</p><hr>
                 <p>''' + str(khuyen_cao) + '''</p>
               
                 <table class="tg">

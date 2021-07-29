@@ -11,7 +11,7 @@ class FormThongTinGiaChu(FlaskForm):
     birthday = StringField('Ngày sinh', validators=[DataRequired()])
     gender = SelectField('Giới tính',choices=['Nam','Nữ'])
     email = StringField('Email',validators=[DataRequired(),Email()])
-    phone = IntegerField('Điện thoại',validators=[NumberRange(message='[Lỗi nhập liệu. điện thoại chỉ con số 0->9]')])
+    #phone = IntegerField('Điện thoại',validators=[NumberRange(message='[Lỗi nhập liệu. điện thoại chỉ con số 0->9]')])
     address = StringField('Địa chỉ')
     submit = SubmitField("Xem kết quả")
 
