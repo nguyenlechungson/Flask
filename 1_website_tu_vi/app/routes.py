@@ -90,7 +90,7 @@ def login():
       return redirect(url_for('truy_xuat_gia_chu',username=current_user.username))
     form = LoginForm()
     if form.validate_on_submit():
-      username = UserDb.query.filter_by(username=form.username.data).first()
+      username = UserDb.query.filter_by(username=form.username.data.title()).first()
       if username is None or not username.check_password(form.birthday.data):
         flash('Họ tên chưa đăng ký hoặc nhập sai ngày tháng năm sinh !')
         return redirect(url_for('login'))
@@ -297,7 +297,7 @@ def chuoi_HTML_gia_chu(username):
               <a class="list-group-item list-group-item-action text-capitalize" href="#'''+str(destination.id) + '''">'''+str(user.username)+'''</a>
             </h4>
             <div class="card-body">
-              <div class="row" style="background-image: url(../static/image/12_con_giap/'''+str(chi)+'''.png);background-size: 440px 242px;"alt="Hinh_'''+chi+'''">
+              <div class="row" style="background-image: url(../static/image/12_con_giap/'''+str(chi)+'''.png);background-size: 480px 267px;"alt="Hinh_'''+chi+'''">
                 <div class="col-lg-12 md-12 text-center"">
                   <p><h5 class="card-title text-capitalize" style="font-family:Style Script;font-size:40px">Tử vi tuổi '''+str(can_chi[1]) + '''</h5></p><hr>
                   <p style="margin-bottom:0;"><b>Ngày sinh: </b>''' + str(user.birthday) + '''</p><hr>

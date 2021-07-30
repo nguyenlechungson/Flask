@@ -48,8 +48,8 @@ class PostForm(FlaskForm):
         
 #Form đăng nhập
 class LoginForm(FlaskForm):
-    username = StringField('Họ và tên',[validators.Required("Nhập họ tên.")])
-    birthday = StringField('Ngày/tháng/năm sinh', validators=[DataRequired()])
+    username = StringField('Họ và tên',[validators.Required("Chưa có dữ liệu.")])
+    birthday = StringField('Ngày/tháng/năm sinh', [validators.Required("Chưa có dữ liệu.")])
     submit = SubmitField('Đăng nhập')
 
     
