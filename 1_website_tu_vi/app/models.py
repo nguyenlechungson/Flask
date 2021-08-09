@@ -21,7 +21,7 @@ class UserDb(UserMixin,db.Model):
     destination =db.relationship('UserDestination',backref='author',lazy='dynamic')
     
     def __repr__(self):
-        return '<User {}>'.format(self.username)
+        return '<User {}> <Birthday: {}>'.format(self.username,self.birthday)
 
     def set_password(self,birthday):
         self.password_hash = generate_password_hash(birthday)

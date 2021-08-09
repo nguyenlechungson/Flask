@@ -6,7 +6,7 @@ from flask_login.utils import current_user,login_user,login_required, logout_use
 from wtforms.validators import Email
 from app import app, db
 from app.models import UserDb,UserDestination,Post
-from app.tu_vi import tinh_menh_ngu_hanh,tinh_can_chi,tinh_nam_am_lich,tinh_tam_tai,tinh_nam_thuan_loi,tinh_hoang_oc,tinh_kim_lau
+from app.tu_vi import *
 from app.form import FormThongTinGiaChu, PostForm, LoginForm
 
 
@@ -113,7 +113,7 @@ def logout():
 @login_required
 def truy_xuat_gia_chu(username):
     thong_tin_gia_chu = chuoi_HTML_gia_chu(username)
-
+    
     # Gửi thông tin liên hệ ghi nhận lên web
     user = UserDb.query.filter_by(username=username).first()
     form_contact = PostForm()
@@ -153,14 +153,11 @@ def xem_tuoi_all():
     return thong_tin_xem_tuoi
 
 def chuyen_string_sang_dict(chuoi_string):
-    chuoi_dict = {}
-    a = {}
-    thongtin = chuoi_string.split('},')
-    for i in thongtin:
-        i = i.replace("'", "")
-        i = i.replace('"', '')
-        chuoi_dict[i[2:6]] = i[7:(len(i)-2)]
-    return chuoi_dict
+  chuoi_dict = {}
+  for i in chuoi_string:
+    chuoi_dict.update(i)
+
+  return chuoi_dict
 
 def du_tinh_nam_tuong_lai(nam_tuong_lai):
     nam_tuong_lai = chuyen_string_sang_dict(nam_tuong_lai)
@@ -251,7 +248,7 @@ def say_hello(current_user):
     thong_tin ='Chào bạn. Vui lòng nhập thông tin <b>Form Thông tin Gia chủ</b> để xem tuổi phù hợp xây nhà!'
   else:
     thong_tin = 'Chào bạn <strong>{}</strong>'.format(current_user.username)
-    thong_tin +='''. Nếu cần xem lại thông tin cá nhân - click <a href="/user/'''+current_user.username+'''"> profile </a>'''
+    thong_tin +='''. Nếu cần xem lại thông tin tử vi - click <a href="/user/'''+current_user.username+'''"> profile </a>'''
   
   flash(Markup(thong_tin))
 
@@ -266,27 +263,36 @@ def chuoi_HTML_gia_chu(username):
     thong_tin_xem_tuoi = ''
     can_chi = ''
     user = UserDb.query.filter_by(username=username).first()
-    print(user)
-    destination = UserDestination.query.filter_by(user_id=int(user.id)).first()
-    menh = destination.menh
+
+    ngay_duong,thang_duong,nam_duong = user.birthday.split('/')
+    ngay_duong = int(ngay_duong)
+    thang_duong = int(thang_duong)
+    nam_duong = int(nam_duong)
+    ngay_am,thang_am,nam_am = tinh_nam_am_lich(nam_duong,thang_duong,ngay_duong)
+   
+    tam_tai = tinh_tam_tai(nam_duong,thang_duong,ngay_duong)
+    kim_lau = tinh_kim_lau(user.gender,nam_duong)
+    hoang_oc = tinh_hoang_oc(nam_duong)
+    nam_tuong_lai = tinh_nam_thuan_loi(user.gender,nam_duong,thang_duong,ngay_duong)
+    menh = tinh_menh_ngu_hanh(nam_am)
     menh = menh.replace('[','')
     menh = menh.replace("'","")
     menh = menh.replace(',','-')
     menh = menh.replace(']','')
-    can_chi = destination.can_chi.split(' ')
+    can_chi = tinh_can_chi(nam_am)
+    can_chi = can_chi.split(' ')
     Chi = {'thân': 'than', 'dậu': 'dau', 'tuất': 'tuat', 'hợi': 'hoi', 'tý': 'ty', 'sửu': 'suu',
            'dần': 'dan', 'mão': 'mao', 'thìn': 'thin', 'tỵ': 'ti', 'ngọ': 'ngo', 'mùi': 'mui'}
     
-    nam_thuan_loi, nam_khong_thuan_loi = du_tinh_nam_tuong_lai(
-        destination.nam_thuan_loi)
+    nam_thuan_loi, nam_khong_thuan_loi = du_tinh_nam_tuong_lai(nam_tuong_lai)
     chuoi_HTML_nam_thuan_loi = chuoi_HTML_Modal(nam_thuan_loi)
     chuoi_HTML_nam_khong_thuan_loi = chuoi_HTML_Modal(nam_khong_thuan_loi)
 
     if can_chi[1].lower() in Chi.keys():
         chi = Chi[can_chi[1].lower()]
 
-        if ("Phù hợp xây nhà" in destination.tam_tai) and ("Phù hợp xây nhà" in destination.kim_lau) and ("Phù hợp xây nhà" in destination.hoang_oc):
-            khuyen_cao = '''<p><b>Khuyến cáo </b>năm hiện tại: <i><b>Rất phù hợp cho việc xây dựng nhà ở, mua nhà/đất</b></i></p>.'''
+        if ("Phù hợp xây nhà" in tam_tai) and ("Phù hợp xây nhà" in kim_lau) and ("Phù hợp xây nhà" in hoang_oc):
+            khuyen_cao = '''<p><b>Khuyến cáo </b>năm hiện tại: <i><b>Rất phù hợp cho việc xây dựng nhà ở, mua nhà/đất</b></i></p>'''
         else:
             khuyen_cao = '''<p><b>Khuyến cáo </b>năm hiện tại: <i><b>Không phù hợp xây nhà.</b></i></p>'''
 
@@ -294,7 +300,7 @@ def chuoi_HTML_gia_chu(username):
             '''
           <div class="card h-auto shadow p-0 md-5 bg-white rounded"style="box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px;">
             <h4 class="card-header">
-              <a class="list-group-item list-group-item-action text-capitalize" href="#'''+str(destination.id) + '''">'''+str(user.username)+'''</a>
+              <a class="list-group-item list-group-item-action text-capitalize" href="#'''+str(user.id) + '''">'''+str(user.username)+'''</a>
             </h4>
             <div class="card-body">
               <div class="row" style="background-image: url(../static/image/12_con_giap/'''+str(chi)+'''.png);background-size: 480px 267px;"alt="Hinh_'''+chi+'''">
@@ -302,14 +308,14 @@ def chuoi_HTML_gia_chu(username):
                   <p><h5 class="card-title text-capitalize" style="font-family:Style Script;font-size:40px">Tử vi tuổi '''+str(can_chi[1]) + '''</h5></p><hr>
                   <p style="margin-bottom:0;"><b>Ngày sinh: </b>''' + str(user.birthday) + '''</p><hr>
                   <p style="margin-bottom:0;"><b>Giới tính: </b>''' + str(user.gender) + '''</p><hr>
-                  <p style="margin-bottom:0;"><b>Năm sinh âm lịch: </b>''' + str(destination.nam_sinh_am_lich) + '''</p><hr>
+                  <p style="margin-bottom:0;"><b>Năm sinh âm lịch: </b>''' + str(ngay_am)+str('/')+str(thang_am)+str('/')+str(nam_am) + '''</p><hr>
                 </div>
               </div>
               <div class="row card" style="font-family: 'Andada Pro', serif;font-size:20px">
                 <p class="text-capitalize"><b>Mệnh: </b>''' + str(menh) + '''</p><hr>
-                <p>''' + str(destination.tam_tai) + '''</p><hr>
-                <p>''' + str(destination.kim_lau) + '''</p><hr>
-                <p>''' + str(destination.hoang_oc) + '''</p><hr>
+                <p>''' + str(tam_tai) + '''</p><hr>
+                <p>''' + str(kim_lau) + '''</p><hr>
+                <p>''' + str(hoang_oc) + '''</p><hr>
                 <p>''' + str(khuyen_cao) + '''</p>
               
                 <table class="tg">
@@ -334,12 +340,12 @@ def chuoi_HTML_gia_chu(username):
             </div>
           </div>
         '''
-    return Markup(thong_tin_xem_tuoi)
+    return thong_tin_xem_tuoi
 
 def chuoi_HTML_Modal(du_lieu_dict):
     Chuoi_HTML = ''
-    for i in du_lieu_dict:
-        i = int(i)
+    for key,values in du_lieu_dict.items():
+        i = int(key)
         can_chi = tinh_can_chi(i)
 
         Chuoi_HTML += '''
@@ -358,7 +364,7 @@ def chuoi_HTML_Modal(du_lieu_dict):
           </div>
           <!-- Modal body -->
           <div class="modal-body">
-            <p>''' + str(du_lieu_dict[str(i)])+'''</p>
+            <p>''' + values +'''</p>
           </div>
           <!-- Modal footer -->
           <div class="modal-footer">

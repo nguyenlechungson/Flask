@@ -285,7 +285,7 @@ def tinh_nam_thuan_loi(gender,nam_sinh,thang_sinh,ngay_sinh):
         if ("Phù hợp xây nhà !" in tam_tai) and ("Phù hợp xây nhà !" in kim_lau) and ("Phù hợp xây nhà !" in hoang_oc):
             b ='''<hr><br><b>Khuyến cáo: </b>Năm '''+str(nam_duong+i) +''' của bạn khi ấy: <i><b>Rất phù hợp cho việc xây dựng nhà ở, mua nhà/đất</b></i>.<br>'''
         else:
-            b = '''<hr><br><b>Khuyến cáo: </b>Năm '''+str(nam_duong+i) +''' của bạn khi ấy: <i><b>Không phù hợp xây nhà.</b></i>.<br>'''
+            b = '''<hr><br><b>Khuyến cáo: </b>Năm '''+str(nam_duong+i) +''' của bạn khi ấy: <i><b>Không phù hợp xây nhà.</b></i><br>'''
 
         can_chi_tung_nam = {nam_duong+i:nhan_xet+str(b)}
         list_12_nam.append(can_chi_tung_nam)
