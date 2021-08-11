@@ -22,9 +22,4 @@ def so_sanh_string():
 
     print(consquec)
         
-    
-    
-   
-
-
 so_sanh_string()

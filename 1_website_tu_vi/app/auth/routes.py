@@ -4,14 +4,15 @@ from flask import render_template, request, Markup, flash,redirect
 from flask.helpers import url_for
 from flask_login.utils import current_user,login_user,login_required, logout_user
 from wtforms.validators import Email
-from app import app, db
+from app import db
+from app.auth import bp
 from app.models import UserDb,UserDestination,Post
 from app.tu_vi import *
-from app.form import FormThongTinGiaChu, PostForm, LoginForm
+from app.auth.form import FormThongTinGiaChu, PostForm, LoginForm
 
 
-@app.route('/', methods=['GET', 'POST'])
-@app.route('/index', methods=['GET', 'POST'])
+@bp.route('/', methods=['GET', 'POST'])
+@bp.route('/index', methods=['GET', 'POST'])
 def index():
     thongtin = ''
     thong_tin_xem_tuoi = ''
@@ -65,7 +66,7 @@ def index():
           # Ghi thông tin vào database
           db.session.add(user_destination)
           db.session.commit()
-          return redirect(url_for('truy_xuat_gia_chu',username=user_db.username))
+          return redirect(url_for('auth.truy_xuat_gia_chu',username=user_db.username))
         except Exception as e:
           flash('Phát sinh lỗi {}'.format(e))
           db.session.rollback()
@@ -81,35 +82,35 @@ def index():
     
     return render_template('/index.html', Form=form, thong_tin=list_gia_chu, Thong_Tin_Gia_Chu=thong_tin_xem_tuoi, Title=title, form_contact=form_contact, POST=POST)
 
-@app.route('/login',methods=['GET','POST'])
+@bp.route('/login',methods=['GET','POST'])
 def login():
   
   try:
     if current_user.is_authenticated:
       flash('Đã xác thực.')
-      return redirect(url_for('truy_xuat_gia_chu',username=current_user.username))
+      return redirect(url_for('auth.truy_xuat_gia_chu',username=current_user.username))
     form = LoginForm()
     if form.validate_on_submit():
       username = UserDb.query.filter_by(username=form.username.data.title()).first()
       if username is None or not username.check_password(form.birthday.data):
         flash('Họ tên chưa đăng ký hoặc nhập sai ngày tháng năm sinh !')
-        return redirect(url_for('login'))
+        return redirect(url_for('auth.login'))
       else:
         login_user(username)
-        return redirect(url_for('truy_xuat_gia_chu',username=current_user.username))
+        return redirect(url_for('auth.truy_xuat_gia_chu',username=current_user.username))
         
       
   except Exception as error:
-    return render_template('500.html', error=error)
+    return render_template('errors/500.html', error=error)
   huongdan = huong_dan()
-  return render_template('login.html',form=form,HUONGDAN=huongdan)
+  return render_template('auth/login.html',form=form,HUONGDAN=huongdan)
 
-@app.route('/logout')
+@bp.route('/logout')
 def logout():
   logout_user()
-  return redirect(url_for('index'))
+  return redirect(url_for('auth.index'))
 
-@app.route('/user/<username>', methods=['GET','POST'])
+@bp.route('/user/<username>', methods=['GET','POST'])
 @login_required
 def truy_xuat_gia_chu(username):
     thong_tin_gia_chu = chuoi_HTML_gia_chu(username)
@@ -142,7 +143,7 @@ def truy_xuat_gia_chu(username):
     user_id = user.id
     posts = xuat_post(user_id)
     
-    return render_template('user.html',form_contact=form_contact,Thong_Tin_Gia_Chu=Markup(thong_tin_gia_chu),NgayThangNam=ngay_thang_nam,POST=posts)
+    return render_template('auth/user.html',form_contact=form_contact,Thong_Tin_Gia_Chu=Markup(thong_tin_gia_chu),NgayThangNam=ngay_thang_nam,POST=posts)
 
 
 def xem_tuoi_all():
@@ -235,7 +236,7 @@ def tra_loi_post(question,username):
   return replay
 
 # Tạo nút xuất file_pdf in toàn bộ thông tin user.
-@app.route('/xuat_pdf')
+@bp.route('/xuat_pdf')
 @login_required
 def xuat_file_pdf():
     thong_tin_pdf = 'Xin chào bạn {}. Tính năng in file pdf "Thông tin Gia chủ" đang phát triển.'.format(current_user.username)
@@ -306,9 +307,9 @@ def chuoi_HTML_gia_chu(username):
               <div class="row" style="background-image: url(../static/image/12_con_giap/'''+str(chi)+'''.png);background-size: 480px 267px;"alt="Hinh_'''+chi+'''">
                 <div class="col-lg-12 md-12 text-center"">
                   <p><h5 class="card-title text-capitalize" style="font-family:Style Script;font-size:40px">Tử vi tuổi '''+str(can_chi[1]) + '''</h5></p><hr>
-                  <p style="margin-bottom:0;"><b>Ngày sinh: </b>''' + str(user.birthday) + '''</p><hr>
+                  <p style="margin-bottom:0;"><b>Dương lịch: </b>''' + str(user.birthday) + '''</p><hr>
                   <p style="margin-bottom:0;"><b>Giới tính: </b>''' + str(user.gender) + '''</p><hr>
-                  <p style="margin-bottom:0;"><b>Năm sinh âm lịch: </b>''' + str(ngay_am)+str('/')+str(thang_am)+str('/')+str(nam_am) + '''</p><hr>
+                  <p style="margin-bottom:0;"><b>Âm lịch: </b>''' + str(ngay_am)+str('/')+str(thang_am)+str('/')+str(nam_am) + '''</p><hr>
                 </div>
               </div>
               <div class="row card" style="font-family: 'Andada Pro', serif;font-size:20px">

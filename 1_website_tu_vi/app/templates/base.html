@@ -70,11 +70,11 @@
             <li class="nav-item active margin-right">
               {% if current_user.is_anonymous %}
               <a class="nav-link btn btn-outline-success btn-round btn-sm" type="button"
-                href="{{url_for('login')}}">Đăng
+                href="{{url_for('auth.login')}}">Đăng
                 nhập</a>
               {% else %}
               <a class="nav-link btn btn-outline-warning btn-round btn-sm" type="button"
-                href="{{url_for('logout')}}">Đăng
+                href="{{url_for('auth.logout')}}">Đăng
                 xuất</a>
               {% endif %}
             </li>
@@ -98,9 +98,9 @@
         {% with messages = get_flashed_messages() %}
         {% if messages %}
         <ul>
-          {% for message in messages %}
-          <div class="alert alert-info" role="alert">{{(message)}}</div>
-          {% endfor %}
+         
+          <div class="alert alert-info" role="alert">{{(messages[-1])}}</div>
+          
         </ul>
         {% endif %}
         {% endwith %}

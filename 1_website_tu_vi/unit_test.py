@@ -197,7 +197,7 @@ def xuat_post():
         print('{}-{} : {} -{}'.format(post.id,post.title,post.body,post.pub_date))
 
 #test_post()
-xoa_all_UserDb_UserDestination()
+#xoa_all_UserDb_UserDestination()
 #nhap_list_customer()
 #xuat_post()
 #xoa_tung_UserDb_UserDestination()
