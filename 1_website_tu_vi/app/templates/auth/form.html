@@ -49,20 +49,7 @@
     </div>
     <div class="card-footer">
       <span class="card-title float-left">{{Form.submit(type="submit", class="btn btn-outline-primary")}}</span>
-      <span class="dropdown disable" >
-        <button class="btn btn-outline-secondary dropdown-toggle float-right" type="button" id="dropdownMenuButton"
-          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" disabled>
-          Danh mục gia chủ
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <div style="height:300px;overflow-y: scroll;padding:5px; border: 1px solid rgb(12, 0, 0);">
-            {% for thongtin in thong_tin %}
-            <a class="dropdown-item" href="{{thongtin}}">{{thongtin}}</a>
-            {% endfor %}
-          </div>
-        </div>
-      </span>
-
+      
     </div>
   </div>
 </form>

@@ -74,6 +74,7 @@ def index():
     # Gửi thông tin liên hệ qua mail
     if current_user.is_authenticated:
       form_contact = PostForm(username=current_user.username,email=current_user.email)
+      
     else:
       form_contact = PostForm()
     
@@ -192,18 +193,18 @@ def drop_list_nam(nam_thuan_loi, nam_khong_thuan_loi):
 def xuat_post(user_id=None):
   POST =''
   if user_id is not None:
-    
     posts = Post.query.filter_by(user_id=user_id).all()
-    
   else:
     posts = Post.query.order_by(Post.pub_date).all()
-  
+
   if len(posts)==0:
-      POST += '''<div class="alert alert-info text-left" style="font-size: 12px"><i>Nếu bạn có câu hỏi. Vui lòng click chọn mục <strong>Liên hệ</strong>.</i>'''
-  
+      POST += '''<div class="alert alert-info text-left" style="font-size: 12px"><img src="../static/image/assistant.png" class="rounded-circle" style="float:left;margin:0px 4px 4px 0px;padding:2px;"alt="asistant;" height="55" width="50" /><i>Nếu bạn có câu hỏi. Vui lòng click chọn mục <strong>Liên hệ</strong>.</i>'''
   else:
     for post in reversed(posts):
+      user = UserDb.query.filter_by(username=post.title).first()
+      print(user)
       time = post.pub_date.strftime('%d/%m/%Y - %H:%M:%S')
+      POST += '''<img src="../static/image/'''+user.gender+'''.png" class="rounded" style="float:left;margin:0px 4px 4px 0px;padding:2px;"alt="hinh_'''+user.gender+''';" height="55" width="50" />'''
       POST += '<b>'+ post.title +'</b>:<br>'
       POST += '<small>['+ str(time) +']</small>: '
       POST += '<i>'+ post.body +'</i><br>'
@@ -211,7 +212,7 @@ def xuat_post(user_id=None):
       tra_loi = tra_loi_post(post.body,post.title)
       
       POST += '''
-          <div class="alert alert-info text-left" style="font-size: 12px">
+          <div class="alert alert-info text-left" style="font-size: 12px"><img src="../static/image/assistant.png" class="rounded-circle" style="float:left;margin:0px 4px 4px 0px;padding:2px;"alt="asistant;" height="55" width="50" />
               '''+ tra_loi +'''
               </div><hr>'''
 
@@ -300,9 +301,10 @@ def chuoi_HTML_gia_chu(username):
         thong_tin_xem_tuoi = \
             '''
           <div class="card h-auto shadow p-0 md-5 bg-white rounded"style="box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px;">
-            <h4 class="card-header">
-              <a class="list-group-item list-group-item-action text-capitalize" href="#'''+str(user.id) + '''">'''+str(user.username)+'''</a>
-            </h4>
+            <h3 class="card-header">
+              
+              <div class="text-capitalize"><img src="../static/image/'''+user.gender+'''.png" class="rounded" style="float:left;margin:0px 4px 4px 0px;padding:2px;"alt="hinh_'''+user.gender+''';" height="65" width="60" />'''+str(user.username)+'''</div>
+            </h3>
             <div class="card-body">
               <div class="row" style="background-image: url(../static/image/12_con_giap/'''+str(chi)+'''.png);background-size: 480px 267px;"alt="Hinh_'''+chi+'''">
                 <div class="col-lg-12 md-12 text-center"">

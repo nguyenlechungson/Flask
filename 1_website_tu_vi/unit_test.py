@@ -1,4 +1,4 @@
-from app.form import PostForm
+from app.auth.form import PostForm
 from datetime import datetime,timedelta
 import unittest
 from app import app, db
@@ -201,3 +201,4 @@ def xuat_post():
 #nhap_list_customer()
 #xuat_post()
 #xoa_tung_UserDb_UserDestination()
+
